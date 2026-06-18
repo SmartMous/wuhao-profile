@@ -9,26 +9,7 @@
 </head>
 <body>
 
-  <div id="bg-container">
-    <div class="bg-stream s1"></div>
-    <div class="bg-stream s2"></div>
-    <div class="bg-stream s3"></div>
-    <div class="bg-stream s4"></div>
-    <div class="bg-stream s5"></div>
-    <div class="bg-stream s6"></div>
-    <div class="bg-stream s7"></div>
-    <div class="bg-stream s8"></div>
-    <div class="bg-dot d1"></div>
-    <div class="bg-dot d2"></div>
-    <div class="bg-dot d3"></div>
-    <div class="bg-dot d4"></div>
-    <div class="bg-dot d5"></div>
-    <div class="bg-dot d6"></div>
-    <div class="bg-dot d7"></div>
-    <div class="bg-dot d8"></div>
-    <div class="bg-dot d9"></div>
-    <div class="bg-dot d10"></div>
-  </div>
+  <canvas id="cyber-canvas"></canvas>
 
   <nav id="navbar">
     <a href="#hero" class="nav-logo">&gt;_</a>
@@ -64,11 +45,11 @@
     <h2 class="section-title neon-text" data-i18n="about.title">/ 关于我</h2>
     <div class="about-card glass-card">
       <div class="about-avatar">
-        <img src="https://via.placeholder.com/180" alt="avatar">
+        <img src="images/hacker.png" alt="Hacker Cyber Blue Flame Avatar">
       </div>
       <div class="about-text">
-        <p data-i18n="about.p1">全栈开发者，热爱技术，专注于构建优雅的 Web 应用。擅长前端工程化、性能优化和用户体验设计。</p>
-        <p data-i18n="about.p2">始终相信代码是一种表达方式 —— 简洁、高效、可维护是我不变的追求。持续学习，持续创造。</p>
+        <p data-i18n="about.p1">AI 算法研发工程师，深耕于深度学习、大语言模型与高性能计算。擅长使用 C++ 和 Python 构建高吞吐、低延迟的模型推理与计算系统。</p>
+        <p data-i18n="about.p2">在 CUDA 并行计算、TensorRT 模型编译部署及多模态大模型应用有丰富实践。追求极致的计算性能与优雅的代码架构，持续探索人工智能边界。</p>
       </div>
     </div>
   </section>
@@ -77,14 +58,14 @@
   <section id="skills" class="reveal">
     <h2 class="section-title neon-text" data-i18n="skills.title">/ 技能</h2>
     <div class="skills-grid">
-      <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
-      <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
-      <div class="skill-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
-      <div class="skill-item"><i class="fab fa-react"></i><span>React</span></div>
+      <div class="skill-item"><i class="fas fa-code"></i><span>C++</span></div>
       <div class="skill-item"><i class="fab fa-python"></i><span>Python</span></div>
-      <div class="skill-item"><i class="fab fa-git-alt"></i><span>Git</span></div>
-      <div class="skill-item"><i class="fab fa-node-js"></i><span>Node.js</span></div>
-      <div class="skill-item"><i class="fas fa-database"></i><span>SQL</span></div>
+      <div class="skill-item"><i class="fas fa-brain"></i><span>PyTorch</span></div>
+      <div class="skill-item"><i class="fas fa-eye"></i><span>YOLO</span></div>
+      <div class="skill-item"><i class="fas fa-microchip"></i><span>CUDA</span></div>
+      <div class="skill-item"><i class="fas fa-bolt"></i><span>TensorRT</span></div>
+      <div class="skill-item"><i class="fab fa-linux"></i><span>Linux</span></div>
+      <div class="skill-item"><i class="fas fa-network-wired"></i><span>LLMs</span></div>
     </div>
   </section>
 
@@ -118,22 +99,22 @@
     <div class="projects-grid">
       <div class="project-card glass-card">
         <div class="project-thumb">
-          <img src="https://via.placeholder.com/600x340/16213e/00f0ff?text=项目+1" alt="项目 1">
+          <img src="https://via.placeholder.com/600x340/16213e/00f0ff?text=Inference+Engine" alt="高性能推理引擎">
         </div>
         <div class="project-info">
-          <h3 data-i18n="projects.item1.title">项目一</h3>
-          <p data-i18n="projects.item1.desc">项目简介，描述一下这个项目是做什么的，用了什么技术。</p>
-          <a href="#" class="project-link" target="_blank"><span data-i18n="projects.view">查看项目</span> <i class="fas fa-arrow-right"></i></a>
+          <h3 data-i18n="projects.item1.title">高性能神经网络推理引擎</h3>
+          <p data-i18n="projects.item1.desc">基于 C++ 和 CUDA 编写的极致推理加速引擎，支持模型剪枝、INT8 量化及算子融合，极其轻量低延迟。</p>
+          <a href="#" class="project-link" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.view">查看项目</span> <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
       <div class="project-card glass-card">
         <div class="project-thumb">
-          <img src="https://via.placeholder.com/600x340/16213e/ff00ff?text=项目+2" alt="项目 2">
+          <img src="https://via.placeholder.com/600x340/16213e/ff00ff?text=LLM+Agents" alt="多模态大模型系统">
         </div>
         <div class="project-info">
-          <h3 data-i18n="projects.item2.title">项目二</h3>
-          <p data-i18n="projects.item2.desc">项目简介，描述一下这个项目是做什么的，用了什么技术。</p>
-          <a href="#" class="project-link" target="_blank"><span data-i18n="projects.view">查看项目</span> <i class="fas fa-arrow-right"></i></a>
+          <h3 data-i18n="projects.item2.title">多模态大模型智能体平台</h3>
+          <p data-i18n="projects.item2.desc">结合 RAG（检索增强生成）与高吞吐算子优化的离线 AI 助手系统，利用 Python 及自定义 C++ 算子加速。</p>
+          <a href="#" class="project-link" target="_blank" rel="noopener noreferrer"><span data-i18n="projects.view">查看项目</span> <i class="fas fa-arrow-right"></i></a>
         </div>
       </div>
     </div>
@@ -143,12 +124,11 @@
   <section id="contact" class="reveal">
     <h2 class="section-title neon-text" data-i18n="contact.title">/ 联系</h2>
     <div class="contact-links">
-      <a href="https://github.com/" target="_blank" class="contact-icon"><i class="fab fa-github"></i></a>
+      <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="contact-icon"><i class="fab fa-github"></i></a>
       <a href="mailto:your@email.com" class="contact-icon"><i class="fas fa-envelope"></i></a>
-      <a href="#" target="_blank" class="contact-icon"><i class="fab fa-linkedin"></i></a>
-      <a href="#" target="_blank" class="contact-icon"><i class="fab fa-x-twitter"></i></a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="contact-icon"><i class="fab fa-linkedin"></i></a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="contact-icon"><i class="fab fa-x-twitter"></i></a>
     </div>
-    <p class="footer-text" data-i18n="footer">由 Claude Code 构建 &lt;/&gt;</p>
   </section>
 
   <!-- Lightbox -->

@@ -6,17 +6,17 @@
 }
 
 :root {
-  --bg: #0a0a1a;
-  --surface: rgba(255, 255, 255, 0.03);
-  --text: #e0e0e0;
-  --dim: #888;
-  --cyan: #00f0ff;
-  --magenta: #ff00ff;
+  --bg: #010105;
+  --surface: rgba(0, 255, 136, 0.02);
+  --text: #00ff88;
+  --dim: #008844;
+  --cyan: #00ff88;
+  --magenta: #00ffaa;
   --green: #00ff88;
-  --glow-cyan: 0 0 10px rgba(0, 240, 255, 0.5);
-  --glow-magenta: 0 0 10px rgba(255, 0, 255, 0.5);
-  --glass: rgba(10, 10, 30, 0.6);
-  --glass-border: rgba(255, 255, 255, 0.08);
+  --glow-cyan: 0 0 10px rgba(0, 255, 136, 0.5), 0 0 2px rgba(0, 255, 136, 0.8);
+  --glow-magenta: 0 0 10px rgba(0, 255, 170, 0.5);
+  --glass: rgba(1, 4, 2, 0.82);
+  --glass-border: rgba(0, 255, 136, 0.15);
 }
 
 html {
@@ -24,15 +24,20 @@ html {
 }
 
 body {
-  font-family: 'Courier New', 'Source Code Pro', 'Fira Code', monospace;
+  font-family: 'Consolas', 'Courier New', 'Source Code Pro', 'Fira Code', monospace;
   background: var(--bg);
   color: var(--text);
   line-height: 1.7;
   overflow-x: hidden;
 }
 
-/* === Background Container === */
-#bg-container {
+/* === Background === */
+body {
+  background: #02020e;
+}
+
+/* Cyber Dynamic Interactive Canvas Background */
+#cyber-canvas {
   position: fixed;
   top: 0;
   left: 0;
@@ -40,71 +45,6 @@ body {
   height: 100%;
   z-index: 0;
   pointer-events: none;
-  overflow: hidden;
-}
-
-/* Body grid pattern */
-body {
-  background-color: #0a0a1a;
-  background-image:
-    radial-gradient(circle, rgba(0, 240, 255, 0.04) 1px, transparent 1px),
-    radial-gradient(circle, rgba(255, 0, 255, 0.03) 1px, transparent 1px);
-  background-size: 32px 32px, 48px 48px;
-  background-position: 0 0, 16px 16px;
-}
-
-/* === Data Streams === */
-.bg-stream {
-  position: absolute;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, hsla(190, 100%, 65%, 0.4), transparent);
-  animation: streamFlow linear infinite;
-}
-
-.s1 { top: 8%;  width: 180px; animation-duration: 6s; animation-delay: 0s; }
-.s2 { top: 16%; width: 260px; animation-duration: 8s; animation-delay: -2s; }
-.s3 { top: 28%; width: 140px; animation-duration: 5s; animation-delay: -1s; background: linear-gradient(90deg, transparent, hsla(292, 100%, 65%, 0.4), transparent); }
-.s4 { top: 42%; width: 300px; animation-duration: 9s; animation-delay: -4s; }
-.s5 { top: 55%; width: 200px; animation-duration: 7s; animation-delay: -3s; background: linear-gradient(90deg, transparent, hsla(292, 100%, 65%, 0.4), transparent); }
-.s6 { top: 70%; width: 240px; animation-duration: 6.5s; animation-delay: -1.5s; }
-.s7 { top: 82%; width: 160px; animation-duration: 5.5s; animation-delay: -5s; }
-.s8 { top: 93%; width: 280px; animation-duration: 8.5s; animation-delay: -2.5s; background: linear-gradient(90deg, transparent, hsla(292, 100%, 65%, 0.4), transparent); }
-
-@keyframes streamFlow {
-  0%   { left: -350px; opacity: 0; }
-  15%  { opacity: 1; }
-  85%  { opacity: 1; }
-  100% { left: 110%; opacity: 0; }
-}
-
-/* === Floating Dots === */
-.bg-dot {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: hsla(190, 100%, 70%, 0.5);
-  box-shadow: 0 0 4px hsla(190, 100%, 70%, 0.6);
-  animation: dotFloat linear infinite;
-}
-
-.d1  { top: 10%; left: 20%; animation-duration: 12s; animation-delay: 0s; }
-.d2  { top: 25%; left: 70%; animation-duration: 14s; animation-delay: -3s; background: hsla(292, 100%, 70%, 0.5); box-shadow: 0 0 4px hsla(292, 100%, 70%, 0.6); }
-.d3  { top: 40%; left: 35%; animation-duration: 10s; animation-delay: -6s; }
-.d4  { top: 55%; left: 80%; animation-duration: 16s; animation-delay: -2s; background: hsla(292, 100%, 70%, 0.5); box-shadow: 0 0 4px hsla(292, 100%, 70%, 0.6); }
-.d5  { top: 68%; left: 15%; animation-duration: 11s; animation-delay: -8s; }
-.d6  { top: 78%; left: 55%; animation-duration: 13s; animation-delay: -5s; background: hsla(292, 100%, 70%, 0.5); box-shadow: 0 0 4px hsla(292, 100%, 70%, 0.6); }
-.d7  { top: 88%; left: 40%; animation-duration: 15s; animation-delay: -1s; }
-.d8  { top: 15%; left: 50%; animation-duration: 9s;  animation-delay: -7s; }
-.d9  { top: 48%; left: 60%; animation-duration: 17s; animation-delay: -4s; background: hsla(292, 100%, 70%, 0.5); box-shadow: 0 0 4px hsla(292, 100%, 70%, 0.6); }
-.d10 { top: 35%; left: 10%; animation-duration: 18s; animation-delay: -9s; }
-
-@keyframes dotFloat {
-  0%   { transform: translate(0, 0); }
-  25%  { transform: translate(30px, -50px); }
-  50%  { transform: translate(-20px, -100px); }
-  75%  { transform: translate(-40px, -30px); }
-  100% { transform: translate(0, 0); }
 }
 
 /* === Navbar === */
@@ -201,7 +141,7 @@ section {
 .glass-card {
   background: var(--glass);
   border: 1px solid var(--glass-border);
-  border-radius: 12px;
+  border-radius: 4px;
   backdrop-filter: blur(8px);
 }
 
@@ -265,20 +205,21 @@ section {
   max-width: 800px;
   width: 100%;
   padding: 50px;
+  border-radius: 4px;
 }
 
 .about-avatar img {
   width: 180px;
   height: 180px;
-  border-radius: 50%;
+  border-radius: 4px;
   object-fit: cover;
-  border: 2px solid var(--cyan);
+  border: 1px solid var(--cyan);
   box-shadow: var(--glow-cyan);
 }
 
 .about-text p {
   margin-bottom: 16px;
-  color: #ccc;
+  color: #00dd77;
 }
 
 /* === Section 3: Skills === */
@@ -297,7 +238,7 @@ section {
   gap: 10px;
   padding: 24px;
   width: 110px;
-  border-radius: 10px;
+  border-radius: 4px;
   background: var(--glass);
   border: 1px solid var(--glass-border);
   transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
@@ -312,7 +253,7 @@ section {
 .skill-item span {
   font-size: 0.8rem;
   letter-spacing: 1px;
-  color: #aaa;
+  color: #00dd77;
 }
 
 .skill-item:hover {
@@ -335,7 +276,7 @@ section {
 }
 
 .gallery-item {
-  border-radius: 10px;
+  border-radius: 4px;
   overflow: hidden;
   cursor: pointer;
   border: 1px solid var(--glass-border);
@@ -370,7 +311,7 @@ section {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
-  border-radius: 10px;
+  border-radius: 4px;
   overflow: hidden;
   border: 1px solid var(--glass-border);
 }
@@ -420,7 +361,7 @@ section {
 
 .project-info p {
   font-size: 0.9rem;
-  color: #aaa;
+  color: #00cc66;
   margin-bottom: 16px;
 }
 
@@ -482,7 +423,7 @@ section {
 .lightbox-img {
   max-width: 90vw;
   max-height: 90vh;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid var(--glass-border);
 }
 

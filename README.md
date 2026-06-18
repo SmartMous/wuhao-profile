@@ -1,6 +1,6 @@
 # wuhao-profile
 
-武浩的个人简历主页 | Personal Profile Page
+武浩的 AI 算法研发与 C++ 高性能计算个人主页 | Personal Profile Page
 
 ## 访问 / Visit
 
@@ -8,21 +8,20 @@
 
 ## 技术栈 / Tech
 
-- 纯 HTML / CSS / JS（零框架依赖）
-- Canvas 星空粒子动画
+- 纯 HTML / CSS / JS（零框架依赖，原生渲染）
+- 高性能 HTML5 Canvas 穿梭时光流光背景（DPR 加速）
+- 3D 滚屏 Parallax 视差层叠与全局色温主动呼吸律动
 - 中英文双语切换（localStorage 持久化）
 - Font Awesome 图标库（CDN）
 - GitHub Pages 静态托管
 
 ## 特性 / Features
 
-- 三层视差星空背景 + 星云光晕 + 鼠标引力交互
-- Hero 打字机循环效果
-- 滚动渐显动画
-- 图片灯箱预览
-- 视频嵌入
-- 深色科技风 UI（霓虹发光 + 玻璃拟态）
-- 移动端响应式
+- 径向穿梭流光时光隧道 + 200px 局部时间凝固交互功能
+- 物理加速 Sparks 水移动拖尾粒子浮火花
+- 磁力引力聚拢与虚线射击激光交互网
+- 移动端流畅、高性能自适应响应式（零重排绘 O(1) 性能级）
+- 极客风 UI（霓虹发光 + 玻璃拟态 + 呼吸准星）
 
 ## 项目结构 / Structure
 
@@ -54,7 +53,3 @@ python3 -m http.server 3000
 ## 部署 / Deploy
 
 推送 `main` 分支到 `SmartMous/wuhao-profile`，GitHub Pages 自动部署。
-
----
-
-Built with [Claude Code](https://claude.ai/code)
