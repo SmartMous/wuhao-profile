@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="title">我的空间</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <canvas id="starfield"></canvas>
+
+  <nav id="navbar">
+    <a href="#hero" class="nav-logo">&gt;_</a>
+    <div class="nav-links">
+      <a href="#about" data-i18n="nav.about">关于</a>
+      <a href="#skills" data-i18n="nav.skills">技能</a>
+      <a href="#gallery" data-i18n="nav.gallery">影像</a>
+      <a href="#projects" data-i18n="nav.projects">项目</a>
+      <a href="#contact" data-i18n="nav.contact">联系</a>
+      <select id="lang-toggle" class="lang-toggle">
+        <option value="zh-CN">中文</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </nav>
+
+  <!-- Section 1: Hero -->
+  <section id="hero">
+    <div class="hero-content">
+      <h1 class="hero-name neon-text" data-i18n="hero.name">你的名字</h1>
+      <div class="hero-subtitle">
+        <span id="typing-text"></span><span class="cursor">_</span>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span data-i18n="hero.scroll">向下滚动</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- Section 2: About -->
+  <section id="about" class="reveal">
+    <h2 class="section-title neon-text" data-i18n="about.title">/ 关于我</h2>
+    <div class="about-card glass-card">
+      <div class="about-avatar">
+        <img src="https://via.placeholder.com/180" alt="avatar">
+      </div>
+      <div class="about-text">
+        <p data-i18n="about.p1">在这里写一段关于你的介绍，聊聊你的背景、兴趣，或者你在做什么。</p>
+        <p data-i18n="about.p2">这里是第二段，可以写得更具体一些，比如你的经历、技术方向、或者你的理念。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Skills -->
+  <section id="skills" class="reveal">
+    <h2 class="section-title neon-text" data-i18n="skills.title">/ 技能</h2>
+    <div class="skills-grid">
+      <div class="skill-item"><i class="fab fa-html5"></i><span>HTML5</span></div>
+      <div class="skill-item"><i class="fab fa-css3-alt"></i><span>CSS3</span></div>
+      <div class="skill-item"><i class="fab fa-js"></i><span>JavaScript</span></div>
+      <div class="skill-item"><i class="fab fa-react"></i><span>React</span></div>
+      <div class="skill-item"><i class="fab fa-python"></i><span>Python</span></div>
+      <div class="skill-item"><i class="fab fa-git-alt"></i><span>Git</span></div>
+      <div class="skill-item"><i class="fab fa-node-js"></i><span>Node.js</span></div>
+      <div class="skill-item"><i class="fas fa-database"></i><span>SQL</span></div>
+    </div>
+  </section>
+
+  <!-- Section 4: Gallery -->
+  <section id="gallery" class="reveal">
+    <h2 class="section-title neon-text" data-i18n="gallery.title">/ 影像</h2>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/600x400/1a1a2e/00f0ff?text=图片+1" alt="图片 1">
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/600x400/1a1a2e/ff00ff?text=图片+2" alt="图片 2">
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/600x400/1a1a2e/00ff88?text=图片+3" alt="图片 3">
+      </div>
+      <div class="gallery-item">
+        <img src="https://via.placeholder.com/600x400/1a1a2e/ff6600?text=图片+4" alt="图片 4">
+      </div>
+    </div>
+    <div class="gallery-videos">
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="video" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Projects -->
+  <section id="projects" class="reveal">
+    <h2 class="section-title neon-text" data-i18n="projects.title">/ 项目</h2>
+    <div class="projects-grid">
+      <div class="project-card glass-card">
+        <div class="project-thumb">
+          <img src="https://via.placeholder.com/600x340/16213e/00f0ff?text=项目+1" alt="项目 1">
+        </div>
+        <div class="project-info">
+          <h3 data-i18n="projects.item1.title">项目一</h3>
+          <p data-i18n="projects.item1.desc">项目简介，描述一下这个项目是做什么的，用了什么技术。</p>
+          <a href="#" class="project-link" target="_blank" data-i18n="projects.view">查看项目 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+      <div class="project-card glass-card">
+        <div class="project-thumb">
+          <img src="https://via.placeholder.com/600x340/16213e/ff00ff?text=项目+2" alt="项目 2">
+        </div>
+        <div class="project-info">
+          <h3 data-i18n="projects.item2.title">项目二</h3>
+          <p data-i18n="projects.item2.desc">项目简介，描述一下这个项目是做什么的，用了什么技术。</p>
+          <a href="#" class="project-link" target="_blank" data-i18n="projects.view">查看项目 <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Contact -->
+  <section id="contact" class="reveal">
+    <h2 class="section-title neon-text" data-i18n="contact.title">/ 联系</h2>
+    <div class="contact-links">
+      <a href="https://github.com/" target="_blank" class="contact-icon"><i class="fab fa-github"></i></a>
+      <a href="mailto:your@email.com" class="contact-icon"><i class="fas fa-envelope"></i></a>
+      <a href="#" target="_blank" class="contact-icon"><i class="fab fa-linkedin"></i></a>
+      <a href="#" target="_blank" class="contact-icon"><i class="fab fa-x-twitter"></i></a>
+    </div>
+    <p class="footer-text" data-i18n="footer">由 Claude Code 构建 &lt;/&gt;</p>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox">
+    <span class="lightbox-close">&times;</span>
+    <img class="lightbox-img" src="" alt="preview">
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
