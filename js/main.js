@@ -5,6 +5,7 @@
     'zh-CN': {
       title: '我的空间',
       'nav.about': '关于',
+      'nav.pipeline': '全流程',
       'nav.skills': '技能',
       'nav.gallery': '影像',
       'nav.projects': '项目',
@@ -15,6 +16,38 @@
       'about.title': '/ 关于我',
       'about.p1': 'AI 算法研发工程师，深耕于深度学习、大语言模型与高性能计算。擅长使用 C++ 和 Python 构建高吞吐、低延迟的模型推理与计算系统。',
       'about.p2': '在 CUDA 并行计算、TensorRT 模型编译部署及多模态大模型应用有丰富实践。追求极致的计算性能与优雅的代码架构，持续探索人工智能边界。',
+      'pipeline.title': '/ 全流程能力',
+      'pipeline.intro': '从数据构建到线上运维闭环，覆盖大模型训练、评测、部署与持续优化。',
+      'pipeline.step1.title': '数据工程',
+      'pipeline.step1.desc': '构建清洗、去重、指令构造与质检流程，形成可复用训练语料资产。',
+      'pipeline.step1.stack': 'DataOps / Python / 规则引擎',
+      'pipeline.step1.outcome': '产出：高质量数据集与版本追踪',
+      'pipeline.step1.proof': '查看证据',
+      'pipeline.step1.proofUrl': '#',
+      'pipeline.step2.title': '训练与对齐',
+      'pipeline.step2.desc': '负责 SFT、参数高效微调与对齐策略迭代，平衡效果与训练成本。',
+      'pipeline.step2.stack': 'PyTorch / LoRA / 分布式训练',
+      'pipeline.step2.outcome': '产出：可上线模型权重与训练报告',
+      'pipeline.step2.proof': '查看证据',
+      'pipeline.step2.proofUrl': '#',
+      'pipeline.step3.title': '评测与迭代',
+      'pipeline.step3.desc': '建立离线评测集和人工评审标准，持续压低幻觉率并提升稳健性。',
+      'pipeline.step3.stack': 'Benchmark / A-B / 自动评测',
+      'pipeline.step3.outcome': '产出：指标看板与版本回归基线',
+      'pipeline.step3.proof': '查看证据',
+      'pipeline.step3.proofUrl': '#',
+      'pipeline.step4.title': '推理部署',
+      'pipeline.step4.desc': '完成量化、图优化与服务化封装，支撑高并发低延迟推理场景。',
+      'pipeline.step4.stack': 'TensorRT / CUDA / Serving',
+      'pipeline.step4.outcome': '产出：可扩展线上推理服务',
+      'pipeline.step4.proof': '查看证据',
+      'pipeline.step4.proofUrl': '#',
+      'pipeline.step5.title': '线上运维',
+      'pipeline.step5.desc': '接入监控告警与灰度发布，打通反馈数据回流与周期性再训练。',
+      'pipeline.step5.stack': 'Observability / CI-CD / 反馈闭环',
+      'pipeline.step5.outcome': '产出：稳定 SLA 与持续优化机制',
+      'pipeline.step5.proof': '查看证据',
+      'pipeline.step5.proofUrl': '#',
       'skills.title': '/ 技能',
       'gallery.title': '/ 影像',
       'projects.title': '/ 项目',
@@ -23,11 +56,14 @@
       'projects.item2.title': '多模态大模型智能体平台',
       'projects.item2.desc': '结合 RAG（检索增强生成）与高吞吐算子优化的离线 AI 助手系统，利用 Python 及自定义 C++ 算子加速。',
       'projects.view': '查看项目',
-      'contact.title': '/ 联系'
+      'contact.title': '/ 联系',
+      'contact.github': 'https://github.com/your-github-id',
+      'contact.email': 'your@email.com'
     },
     'en': {
       title: 'My Space',
       'nav.about': 'About',
+      'nav.pipeline': 'Pipeline',
       'nav.skills': 'Skills',
       'nav.gallery': 'Gallery',
       'nav.projects': 'Projects',
@@ -38,6 +74,38 @@
       'about.title': '/ About',
       'about.p1': 'AI Algorithm Engineer specialized in Deep Learning, Large Language Models, and High-Performance Computing. Skilled in designing high-throughput, low-latency inference and compute engines using C++ and Python.',
       'about.p2': 'Deep hands-on experience in CUDA parallel programming, TensorRT compiler optimizations, and Multimodal LLMs. Dedicated to squeezing maximum computing power through clean, elegant software architectures.',
+      'pipeline.title': '/ End-to-End Pipeline',
+      'pipeline.intro': 'Covers the full lifecycle from data engineering to production operations: training, evaluation, deployment, and continuous optimization.',
+      'pipeline.step1.title': 'Data Engineering',
+      'pipeline.step1.desc': 'Built cleaning, deduplication, instruction construction, and quality-control pipelines for reusable training datasets.',
+      'pipeline.step1.stack': 'DataOps / Python / Rule Engine',
+      'pipeline.step1.outcome': 'Output: versioned high-quality datasets',
+      'pipeline.step1.proof': 'Proof',
+      'pipeline.step1.proofUrl': '#',
+      'pipeline.step2.title': 'Training and Alignment',
+      'pipeline.step2.desc': 'Owned SFT and parameter-efficient fine-tuning strategies, balancing model quality with compute budget.',
+      'pipeline.step2.stack': 'PyTorch / LoRA / Distributed Training',
+      'pipeline.step2.outcome': 'Output: deployable checkpoints and training reports',
+      'pipeline.step2.proof': 'Proof',
+      'pipeline.step2.proofUrl': '#',
+      'pipeline.step3.title': 'Evaluation and Iteration',
+      'pipeline.step3.desc': 'Designed offline benchmarks and human-review standards to reduce hallucinations and improve robustness.',
+      'pipeline.step3.stack': 'Benchmark / A-B / Auto Eval',
+      'pipeline.step3.outcome': 'Output: metric dashboard and regression baseline',
+      'pipeline.step3.proof': 'Proof',
+      'pipeline.step3.proofUrl': '#',
+      'pipeline.step4.title': 'Inference Deployment',
+      'pipeline.step4.desc': 'Delivered quantization, graph optimization, and service packaging for high-throughput low-latency inference.',
+      'pipeline.step4.stack': 'TensorRT / CUDA / Serving',
+      'pipeline.step4.outcome': 'Output: scalable online inference service',
+      'pipeline.step4.proof': 'Proof',
+      'pipeline.step4.proofUrl': '#',
+      'pipeline.step5.title': 'Production Operations',
+      'pipeline.step5.desc': 'Implemented monitoring, alerting, and canary rollout with feedback loops for periodic retraining.',
+      'pipeline.step5.stack': 'Observability / CI-CD / Feedback Loop',
+      'pipeline.step5.outcome': 'Output: stable SLA and continuous improvement',
+      'pipeline.step5.proof': 'Proof',
+      'pipeline.step5.proofUrl': '#',
       'skills.title': '/ Skills',
       'gallery.title': '/ Gallery',
       'projects.title': '/ Projects',
@@ -46,7 +114,9 @@
       'projects.item2.title': 'Multimodal LLM Agent Framework',
       'projects.item2.desc': 'A localized LLM Agent workspace integrating Retrieval-Augmented Generation (RAG) and optimized with Python and custom C++ CUDA-kernels.',
       'projects.view': 'View Project',
-      'contact.title': '/ Contact'
+      'contact.title': '/ Contact',
+      'contact.github': 'https://github.com/your-github-id',
+      'contact.email': 'your@email.com'
     }
   };
 
@@ -71,6 +141,48 @@
 
     // Update document title
     document.title = data[lang].title;
+
+    // Update project links from configuration, allowing direct jumps to Bilibili pages.
+    var projectLink1 = document.getElementById('project-link-1');
+    var projectLink2 = document.getElementById('project-link-2');
+    if (projectLink1 && data[lang]['projects.item1.url']) {
+      projectLink1.href = data[lang]['projects.item1.url'];
+    }
+    if (projectLink2 && data[lang]['projects.item2.url']) {
+      projectLink2.href = data[lang]['projects.item2.url'];
+    }
+
+    var githubLink = document.getElementById('contact-github');
+    var emailLink = document.getElementById('contact-email');
+    if (githubLink && data[lang]['contact.github']) {
+      githubLink.href = data[lang]['contact.github'];
+    }
+    if (emailLink && data[lang]['contact.email']) {
+      var emailValue = data[lang]['contact.email'];
+      emailLink.href = emailValue.indexOf('mailto:') === 0 ? emailValue : ('mailto:' + emailValue);
+    }
+
+    for (var step = 1; step <= 5; step++) {
+      var proofEl = document.getElementById('pipeline-proof-' + step);
+      if (!proofEl) continue;
+
+      var proofLabelKey = 'pipeline.step' + step + '.proof';
+      var proofUrlKey = 'pipeline.step' + step + '.proofUrl';
+      if (data[lang][proofLabelKey]) {
+        proofEl.textContent = data[lang][proofLabelKey];
+      }
+
+      var proofUrl = data[lang][proofUrlKey] || '#';
+      if (proofUrl === '#') {
+        proofEl.href = '#';
+        proofEl.style.pointerEvents = 'none';
+        proofEl.style.opacity = '0.55';
+      } else {
+        proofEl.href = proofUrl;
+        proofEl.style.pointerEvents = 'auto';
+        proofEl.style.opacity = '1';
+      }
+    }
 
     // Re-trigger typing effect with new text
     if (window.restartTyping) {
