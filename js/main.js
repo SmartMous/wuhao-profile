@@ -349,7 +349,8 @@
     this.y = init ? Math.random() * h : -150 - Math.random() * 150;
     this.speed = 1.2 + Math.random() * 2.8;
     this.fontSize = 9 + Math.random() * 8;
-    this.opacity = 0.07 + Math.random() * 0.18;
+    // 提亮整体代码雨不透明度至 0.16~0.42 (原来 0.07~0.18，翻倍提亮)
+    this.opacity = 0.16 + Math.random() * 0.26;
     this.chars = [];
     var length = 8 + Math.floor(Math.random() * 12);
     // Binary & Hex & Math symbols for computer science vibe
