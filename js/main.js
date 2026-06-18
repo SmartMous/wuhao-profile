@@ -136,12 +136,13 @@
   type();
 })();
 
-/* === Cosmic Drifting Background === */
+/* === Data Stream Background === */
 (function() {
   var canvas = document.getElementById('starfield');
   var ctx = canvas.getContext('2d');
   var w, h;
   var mouse = { x: -1000, y: -1000 };
+  var time = 0;
 
   function resize() {
     w = canvas.width = window.innerWidth;
@@ -150,40 +151,33 @@
   window.addEventListener('resize', resize);
   resize();
 
-  // Distant layer: tiny dim stars, very slow drift
-  function createStarLayer(count, sizeRange, speed, opacityRange, color) {
-    var layer = [];
-    for (var i = 0; i < count; i++) {
-      layer.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        size: sizeRange[0] + Math.random() * (sizeRange[1] - sizeRange[0]),
-        vx: (Math.random() - 0.5) * speed,
-        vy: (Math.random() - 0.5) * speed,
-        opacity: opacityRange[0] + Math.random() * (opacityRange[1] - opacityRange[0]),
-        twinkle: Math.random() * Math.PI * 2,
-        twinkleSpeed: 0.003 + Math.random() * 0.015,
-        color: color
-      });
-    }
-    return layer;
+  // Data streams — horizontal flowing dashed lines
+  var streams = [];
+  for (var i = 0; i < 28; i++) {
+    streams.push({
+      y: Math.random() * h,
+      speed: 0.4 + Math.random() * 1.2,
+      width: 80 + Math.random() * 220,
+      opacity: 0.12 + Math.random() * 0.22,
+      hue: Math.random() < 0.5 ? 188 : 292,
+      dashLen: 4 + Math.random() * 10,
+      gapLen: 12 + Math.random() * 40,
+      x: Math.random() * w
+    });
   }
 
-  var layerFar = createStarLayer(150, [1.2, 2.2], 0.06, [0.25, 0.6], '#c8d6ff');
-  var layerMid = createStarLayer(90, [1.8, 3.2], 0.12, [0.4, 0.85], '#e0e8ff');
-  var layerNear = createStarLayer(35, [2.5, 5.0], 0.20, [0.55, 1.0], '#f8fcff');
-
-  // Large glowing "nebula" particles — very slow, soft glow
-  var nebula = [];
-  for (var _i = 0; _i < 8; _i++) {
-    nebula.push({
+  // Floating nodes (small glowing dots)
+  var nodes = [];
+  for (var _j = 0; _j < 35; _j++) {
+    nodes.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      radius: 80 + Math.random() * 160,
-      vx: (Math.random() - 0.5) * 0.03,
-      vy: (Math.random() - 0.5) * 0.03,
-      hue: 200 + Math.random() * 80,
-      alpha: 0.03 + Math.random() * 0.04
+      r: 1.2 + Math.random() * 2.5,
+      vx: (Math.random() - 0.5) * 0.3,
+      vy: (Math.random() - 0.5) * 0.3,
+      hue: Math.random() < 0.5 ? 188 : 292,
+      phase: Math.random() * Math.PI * 2,
+      pulse: 0.01 + Math.random() * 0.03
     });
   }
 
@@ -192,85 +186,105 @@
     mouse.y = e.clientY;
   });
 
-  function updateLayer(layer) {
-    for (var _i2 = 0, _a = layer; _i2 < _a.length; _i2++) {
-      var s = _a[_i2];
-      // Gentle sinusoidal drift
-      s.x += s.vx + Math.sin(s.twinkle) * 0.03;
-      s.y += s.vy + Math.cos(s.twinkle * 1.3) * 0.03;
-      s.twinkle += s.twinkleSpeed;
+  function drawStream(s) {
+    var x = s.x;
+    var dash = s.dashLen + s.gapLen;
+    var segCount = Math.floor(s.width / dash);
 
-      // Wrap around edges
-      if (s.x < -10) s.x = w + 10;
-      if (s.x > w + 10) s.x = -10;
-      if (s.y < -10) s.y = h + 10;
-      if (s.y > h + 10) s.y = -10;
-    }
-  }
+    for (var k = 0; k < segCount; k++) {
+      var segX = x + k * dash;
+      if (segX > w + dash) segX -= w + dash + 20;
+      if (segX < -dash) segX += w + dash + 20;
 
-  function drawLayer(layer, mouseInfluence) {
-    for (var _i3 = 0, _a = layer; _i3 < _a.length; _i3++) {
-      var s = _a[_i3];
-      var alpha = s.opacity * (0.6 + 0.4 * Math.sin(s.twinkle));
-      var drawX = s.x;
-      var drawY = s.y;
-
-      // Gentle mouse gravity
-      if (mouseInfluence) {
-        var dx = mouse.x - s.x;
-        var dy = mouse.y - s.y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        var radius = mouseInfluence.radius;
-        var strength = mouseInfluence.strength;
-        if (dist < radius && dist > 0) {
-          var force = (1 - dist / radius) * strength;
-          drawX += dx * force;
-          drawY += dy * force;
-          alpha = Math.min(1, alpha + force * 0.4);
-        }
+      var alpha = s.opacity;
+      // Brighten near mouse
+      var dy = Math.abs(mouse.y - s.y);
+      if (dy < 80) {
+        alpha = Math.min(0.45, alpha + 0.15 * (1 - dy / 80));
       }
 
       ctx.beginPath();
-      ctx.arc(drawX, drawY, s.size, 0, Math.PI * 2);
-      ctx.fillStyle = s.color;
-      ctx.globalAlpha = alpha;
+      ctx.moveTo(segX, s.y);
+      ctx.lineTo(segX + s.dashLen, s.y);
+      ctx.strokeStyle = 'hsla(' + s.hue + ', 80%, 65%, ' + alpha + ')';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  function drawNode(n) {
+    n.x += n.vx;
+    n.y += n.vy;
+    if (n.x < -10) n.x = w + 10;
+    if (n.x > w + 10) n.x = -10;
+    if (n.y < -10) n.y = h + 10;
+    if (n.y > h + 10) n.y = -10;
+
+    var alpha = 0.3 + 0.3 * Math.sin(time * n.pulse + n.phase);
+
+    // Brighten near mouse
+    var dx = mouse.x - n.x;
+    var dy = mouse.y - n.y;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist < 150) {
+      alpha = Math.min(0.9, alpha + 0.35 * (1 - dist / 150));
+    }
+
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    ctx.fillStyle = 'hsla(' + n.hue + ', 80%, 65%, ' + alpha + ')';
+    ctx.fill();
+
+    // Glow halo
+    if (dist < 150) {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 3, 0, Math.PI * 2);
+      ctx.fillStyle = 'hsla(' + n.hue + ', 80%, 65%, ' + (alpha * 0.2) + ')';
       ctx.fill();
     }
   }
 
-  function drawNebula() {
-    for (var _i4 = 0, _a = nebula; _i4 < _a.length; _i4++) {
-      var n = _a[_i4];
-      n.x += n.vx;
-      n.y += n.vy;
-      if (n.x < -n.radius) n.x = w + n.radius;
-      if (n.x > w + n.radius) n.x = -n.radius;
-      if (n.y < -n.radius) n.y = h + n.radius;
-      if (n.y > h + n.radius) n.y = -n.radius;
+  // Draw connection lines between nearby nodes
+  function drawConnections() {
+    for (var _a = 0; _a < nodes.length; _a++) {
+      for (var _b = _a + 1; _b < nodes.length; _b++) {
+        var a = nodes[_a];
+        var b = nodes[_b];
+        var dx = a.x - b.x;
+        var dy = a.y - b.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var maxDist = 160;
 
-      var gradient = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.radius);
-      gradient.addColorStop(0, 'hsla(' + n.hue + ', 60%, 50%, ' + n.alpha + ')');
-      gradient.addColorStop(0.5, 'hsla(' + n.hue + ', 40%, 30%, ' + (n.alpha * 0.4) + ')');
-      gradient.addColorStop(1, 'transparent');
-      ctx.fillStyle = gradient;
-      ctx.globalAlpha = 1;
-      ctx.fillRect(n.x - n.radius, n.y - n.radius, n.radius * 2, n.radius * 2);
+        if (dist < maxDist) {
+          var alpha = (1 - dist / maxDist) * 0.06;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = 'rgba(0, 220, 255, ' + alpha + ')';
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
     }
   }
 
   function animate() {
     ctx.clearRect(0, 0, w, h);
+    time++;
 
-    drawNebula();
+    drawConnections();
 
-    updateLayer(layerFar);
-    updateLayer(layerMid);
-    updateLayer(layerNear);
+    for (var _s = 0; _s < streams.length; _s++) {
+      var s = streams[_s];
+      s.x += s.speed;
+      if (s.x > w + 10) s.x = -s.width;
+      if (s.x < -s.width - 10) s.x = w + 10;
+      drawStream(s);
+    }
 
-    // Draw layers — farthest first, no mouse for far layer
-    drawLayer(layerFar, null);
-    drawLayer(layerMid, { radius: 200, strength: 0.12 });
-    drawLayer(layerNear, { radius: 260, strength: 0.2 });
+    for (var _n = 0; _n < nodes.length; _n++) {
+      drawNode(nodes[_n]);
+    }
 
     requestAnimationFrame(animate);
   }
@@ -287,36 +301,63 @@
         entry.target.classList.add('visible');
       }
     }
-  }, { threshold: 0.15 });
+  }, { threshold: 0.1 });
 
-  for (var _i6 = 0, _a = document.querySelectorAll('.reveal'); _i6 < _a.length; _i6++) {
-    observer.observe(_a[_i6]);
+  var revealEls = document.querySelectorAll('.reveal');
+  for (var _i6 = 0; _i6 < revealEls.length; _i6++) {
+    observer.observe(revealEls[_i6]);
   }
 
-  // Skills staggered pop-in
-  var skillsObserver = new IntersectionObserver(function(entries) {
-    for (var _i7 = 0, _a = entries; _i7 < _a.length; _i7++) {
-      var entry = _a[_i7];
-      if (entry.isIntersecting) {
-        var items = entry.target.querySelectorAll('.skill-item');
-        items.forEach(function(item, index) {
-          item.style.opacity = '0';
-          item.style.transform = 'scale(0.6)';
-          item.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
-          setTimeout(function() {
-            item.style.opacity = '1';
-            item.style.transform = 'scale(1)';
-          }, index * 80);
-        });
-        skillsObserver.unobserve(entry.target);
+  // Fallback: reveal all after 1s if observer hasn't fired
+  setTimeout(function() {
+    for (var _j = 0; _j < revealEls.length; _j++) {
+      var el = revealEls[_j];
+      if (!el.classList.contains('visible')) {
+        el.classList.add('visible');
       }
     }
-  }, { threshold: 0.3 });
+  }, 1000);
+
+  // Skills staggered pop-in
+  function initSkills() {
+    var section = document.getElementById('skills');
+    if (!section) return;
+    var items = section.querySelectorAll('.skill-item');
+    if (items.length > 0 && items[0].style.opacity !== '0') {
+      return; // already initialized
+    }
+    items.forEach(function(item, index) {
+      item.style.opacity = '0';
+      item.style.transform = 'scale(0.6)';
+      item.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+      setTimeout(function() {
+        item.style.opacity = '1';
+        item.style.transform = 'scale(1)';
+      }, index * 80);
+    });
+  }
+
+  var skillsObserver = new IntersectionObserver(function(entries) {
+    for (var _i7 = 0, _a = entries; _i7 < _a.length; _i7++) {
+      if (_a[_i7].isIntersecting) {
+        initSkills();
+        skillsObserver.unobserve(_a[_i7].target);
+      }
+    }
+  }, { threshold: 0.1 });
 
   var skillsSection = document.getElementById('skills');
   if (skillsSection) {
     skillsObserver.observe(skillsSection);
   }
+
+  // Fallback: init skills after 1.5s if observer hasn't fired
+  setTimeout(function() {
+    var section = document.getElementById('skills');
+    if (section && section.classList.contains('visible')) {
+      initSkills();
+    }
+  }, 1500);
 })();
 
 /* === Smooth Scroll for Nav Links === */
