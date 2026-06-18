@@ -169,21 +169,21 @@
     return layer;
   }
 
-  var layerFar = createStarLayer(180, [0.4, 1.2], 0.08, [0.15, 0.5], '#c8d6ff');
-  var layerMid = createStarLayer(80, [0.8, 2.0], 0.15, [0.3, 0.8], '#e0e8ff');
-  var layerNear = createStarLayer(30, [1.5, 3.5], 0.25, [0.5, 0.95], '#f0f4ff');
+  var layerFar = createStarLayer(150, [1.2, 2.2], 0.06, [0.25, 0.6], '#c8d6ff');
+  var layerMid = createStarLayer(90, [1.8, 3.2], 0.12, [0.4, 0.85], '#e0e8ff');
+  var layerNear = createStarLayer(35, [2.5, 5.0], 0.20, [0.55, 1.0], '#f8fcff');
 
   // Large glowing "nebula" particles — very slow, soft glow
   var nebula = [];
-  for (var _i = 0; _i < 6; _i++) {
+  for (var _i = 0; _i < 8; _i++) {
     nebula.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      radius: 60 + Math.random() * 140,
-      vx: (Math.random() - 0.5) * 0.04,
-      vy: (Math.random() - 0.5) * 0.04,
+      radius: 80 + Math.random() * 160,
+      vx: (Math.random() - 0.5) * 0.03,
+      vy: (Math.random() - 0.5) * 0.03,
       hue: 200 + Math.random() * 80,
-      alpha: 0.015 + Math.random() * 0.025
+      alpha: 0.03 + Math.random() * 0.04
     });
   }
 
