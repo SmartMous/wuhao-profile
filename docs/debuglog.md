@@ -24,3 +24,13 @@
 - **现象**: 切换中英文后"查看项目"链接后面的箭头图标消失
 - **原因**: `applyLang()` 使用 `el.textContent = ...` 替换整个元素内容，`<i class="fas fa-arrow-right"></i>` 子元素被清除
 - **修复**: HTML 中把 i18n 文本用 `<span data-i18n="projects.view">` 包裹，`<i>` 图标留在 `<span>` 外，不再受 textContent 替换影响
+
+## 2026-06-18 — 移动端导航切换后内容区域空白
+- **现象**: 点击导航栏跳转到各 Section，页面一片空白，只有 Hero 可见
+- **原因**: `.reveal` 元素初始 `opacity: 0; transform: translateY(40px)`，依赖 IntersectionObserver 添加 `.visible` 类。部分移动浏览器 Observer 初始不触发导致 section 永远不可见
+- **修复**: JS 中增加 setTimeout fallback（1s 后强制 reveal 所有元素，1.5s 后触发 skills 动画），降低 threshold 从 0.15/0.3 到 0.1
+
+## 2026-06-18 — 星���粒子背景在移动端始终不可见
+- **现象**: 多次调整粒子参数后手机端仍看不到背景
+- **决定**: 放弃星空粒子方案，改为数据流传输动效
+- **新方案**: 28条水平数据流（dashed line 流动）+ 35个浮动节点（带光晕）+ 节点间连线，配色 cyan/magenta，鼠标靠近节点和流时增亮
